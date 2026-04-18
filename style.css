@@ -13,6 +13,7 @@ body {
   background: #111;
 }
 
+/* CONTAINER ANIMATION */
 .container {
   width: 800px;
   height: 500px;
@@ -20,6 +21,19 @@ body {
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
+
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* LEFT */
@@ -33,6 +47,18 @@ body {
 
 .form-box {
   width: 80%;
+  animation: slideLeft 1s ease;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .form-box h2 {
@@ -45,6 +71,14 @@ body {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* INPUT FOCUS */
+.form-box input:focus {
+  border-color: #7b2ff7;
+  outline: none;
+  box-shadow: 0 0 5px rgba(123, 47, 247, 0.5);
 }
 
 .options {
@@ -63,6 +97,13 @@ body {
   background: linear-gradient(to right, #7b2ff7, #f107a3);
   color: #fff;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(241, 7, 163, 0.4);
 }
 
 /* TEXT */
@@ -93,6 +134,12 @@ body {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  transition: 0.3s;
+}
+
+/* HOVER SOCIAL */
+.social button:hover {
+  transform: scale(1.05);
 }
 
 /* FACEBOOK */
@@ -115,16 +162,37 @@ body {
 /* RIGHT */
 .right {
   width: 50%;
-  background: linear-gradient(to right, #7b2ff7, #f107a3);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+
+  background: linear-gradient(-45deg, #7b2ff7, #f107a3, #ff6a00, #6a11cb);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .overlay {
-  color: white;
   text-align: center;
   padding: 20px;
+  animation: slideRight 1s ease;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .overlay h1 {
@@ -144,4 +212,9 @@ body {
   border-radius: 20px;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.learn:hover {
+  transform: scale(1.1);
 }
