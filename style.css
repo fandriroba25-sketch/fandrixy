@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+}
+
+.container {
+  width: 800px;
+  height: 500px;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* LEFT SIDE */
+.left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+.form-box {
+  width: 80%;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  color: #fff;
+  cursor: pointer;
+}
+
+.or {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
+
+.social button {
+  flex: 1;
+  background: #ddd;
+  color: #333;
+}
+
+.signup {
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+/* RIGHT SIDE */
+.right {
+  width: 50%;
+  position: relative;
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.learn {
+  background: white;
+  color: #7b2ff7;
+  padding: 10px 20px;
+  border-radius: 20px;
+  }
