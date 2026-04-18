@@ -155,6 +155,11 @@ body {
   border: 1px solid #ccc;
 }
 
+.google img {
+  width: 18px;
+  height: 18px;
+}
+
 .social i {
   font-size: 16px;
 }
