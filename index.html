@@ -1,103 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login Page</title>
-
+  <title>Payment QR</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- ICON -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- GOOGLE LOGIN -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  
 </head>
 <body>
 
 <div class="container">
+  <h1>Selamat Datang</h1>
+  <p>Silakan scan QR di bawah ini untuk melakukan pembayaran</p>
 
-  <!-- LEFT -->
-  <div class="left">
-    <div class="form-box">
-      <h2>Log In</h2>
+  <!-- QR CODE -->
+  <img src="qr.png" alt="QR Payment" class="qr">
 
-      <input type="email" placeholder="Email Address">
-      <input type="password" placeholder="Password">
+  <p class="note">Setelah bayar, klik tombol di bawah</p>
 
-      <div class="options">
-        <label><input type="checkbox"> Remember me</label>
-        <a href="#">Forgot password?</a>
-      </div>
-
-      <button class="login-btn">Log In</button>
-
-      <p class="or">or connect with</p>
-
-      <div class="social">
-
-        <!-- FACEBOOK (dummy) -->
-        <button class="fb">
-          <i class="fab fa-facebook-f"></i>
-          Facebook
-        </button>
-
-        <!-- GOOGLE LOGIN REAL -->
-        <div id="g_id_onload"
-             data-client_id="ISI_CLIENT_ID_KAMU"
-             data-callback="handleCredentialResponse"
-             data-auto_prompt="false">
-        </div>
-
-        <div class="g_id_signin"
-             data-type="standard"
-             data-size="large"
-             data-theme="outline"
-             data-text="sign_in_with"
-             data-shape="pill">
-        </div>
-
-      </div>
-
-      <p class="signup">
-        Don't have account? <a href="#">Sign up</a>
-      </p>
-    </div>
-  </div>
-
-  <!-- RIGHT -->
-  <div class="right">
-    <div class="overlay">
-      <h1>MASO KOLOT</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Sed do eiusmod tempor incididunt ut labore.
-      </p>
-      <button class="learn">Learn More</button>
-    </div>
-  </div>
-
+  <button onclick="lanjut()">Saya Sudah Bayar</button>
 </div>
 
-<!-- SCRIPT LOGIN -->
-<script>
-  function handleCredentialResponse(response) {
-    const data = parseJwt(response.credential);
-
-    alert("Login berhasil: " + data.name);
-    console.log(data);
-  }
-
-  function parseJwt(token) {
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
