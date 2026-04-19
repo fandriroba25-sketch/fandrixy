@@ -2,21 +2,34 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Payment QR</title>
+  <title>Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-  <h1>Selamat Datang</h1>
-  <p>Silakan scan QR di bawah ini untuk melakukan pembayaran</p>
+<div class="login-container">
+  
+  <div class="login-box">
+    <h2>Masuk</h2>
+    <p>Gunakan akun Anda</p>
 
-  <!-- QR CODE -->
-  <img src="qr.png" alt="QR Payment" class="qr">
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
 
-  <p class="note">Setelah bayar, klik tombol di bawah</p>
+      <button type="submit">Login</button>
+    </form>
 
-  <button onclick="lanjut()">Saya Sudah Bayar</button>
+    <div class="divider">atau</div>
+
+    <button class="google-btn" onclick="loginGoogle()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+      Login dengan Google
+    </button>
+
+    <p class="create">Belum punya akun? <a href="#">Daftar</a></p>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
