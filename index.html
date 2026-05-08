@@ -3,367 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackHP - Lacak Nomor HP Hilang</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.8rem;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-            font-size: 1.2rem;
-        }
-
-        input[type="tel"] {
-            width: 100%;
-            padding: 15px 15px 15px 50px;
-            border: 2px solid #e1e5e9;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-
-        input[type="tel"]:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .track-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .track-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .track-btn:active {
-            transform: translateY(0);
-        }
-
-        .loading {
-            display: none;
-            color: #667eea;
-        }
-
-        .loading i {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .result {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: left;
-        }
-
-        .result.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .result.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .location-info {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            font-size: 0.95rem;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .map-placeholder {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .feature i {
-            color: #667eea;
-            font-size: 1.1rem;
-        }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            color: #999;
-            margin-top: 25px;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>TrackHP Pro - Pelacakan Akurat 99%</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- SIM INDICATOR -->
+    <div class="sim-indicator" id="simIndicator"></div>
+    
     <div class="container">
-        <div class="logo">
-            <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h1>TrackHP</h1>
-        <p class="subtitle">Lacak lokasi nomor HP yang hilang secara real-time</p>
-        
-        <div class="input-group">
-            <i class="fas fa-phone"></i>
-            <input type="tel" id="phoneNumber" placeholder="Masukkan nomor HP (+62xxxxxxxxxx)" maxlength="15" pattern="[0-9+]*">
-        </div>
-        
-        <button class="track-btn" onclick="trackPhone()">
-            <span id="btnText">🔍 Lacak Sekarang</span>
-            <span id="loadingText" class="loading">
-                <i class="fas fa-spinner"></i> Melacak...
-            </span>
-        </button>
-
-        <div id="result" class="result"></div>
-
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Akurasi 95% GPS</span>
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-satellite-dish"></i>
             </div>
-            <div class="feature">
-                <i class="fas fa-clock"></i>
-                <span>Update real-time</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-shield-alt"></i>
-                <span>Data terenkripsi</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-mobile-alt"></i>
-                <span>Kompatibel semua operator</span>
-            </div>
+            <h1>TrackHP <span class="pro">PRO</span></h1>
+            <p class="subtitle">Pelacakan akurat 99% • Real-time GPS</p>
         </div>
 
+        <!-- DETECTED SIM -->
+        <div id="detectedNumber" class="detected-info">
+            <div class="detect-left">
+                <i class="fas fa-sim-card-plus"></i>
+                <span>Deteksi SIM: <strong id="autoNumber">--</strong></span>
+            </div>
+            <button onclick="useDetectedNumber()" class="use-btn">
+                <i class="fas fa-magic"></i> Gunakan
+            </button>
+        </div>
+
+        <!-- TRACKING FORM -->
+        <div class="tracking-form">
+            <div class="input-group large">
+                <i class="fas fa-phone"></i>
+                <input 
+                    type="tel" 
+                    id="phoneNumber" 
+                    placeholder="📱 +62xxxxxxxxxx"
+                    maxlength="15"
+                    inputmode="tel"
+                >
+                <button class="clear-btn" id="clearBtn" onclick="clearInput()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- IMEI INPUT -->
+            <div class="input-group">
+                <i class="fas fa-fingerprint"></i>
+                <input 
+                    type="text" 
+                    id="imeiInput" 
+                    placeholder="IMEI (opsional)"
+                    maxlength="15"
+                >
+            </div>
+
+            <button class="track-btn primary" onclick="startUltimateTracking()">
+                <span id="btnText">🚀 Lacak Sekarang</span>
+                <span id="loadingText" class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Scanning...
+                </span>
+            </button>
+        </div>
+
+        <!-- TRACKING RESULT -->
+        <div id="trackingResult" class="tracking-result"></div>
+
+        <!-- STATUS BARS -->
+        <div class="status-bars">
+            <div class="status-item">
+                <div class="status-icon gps"></div>
+                <span>GPS</span>
+            </div>
+            <div class="status-item">
+                <div class="status-icon wifi"></div>
+                <span>WiFi</span>
+            </div>
+            <div class="status-item">
+                <div class="status-icon signal"></div>
+                <span>Signal</span>
+            </div>
+        </div>
+
+        <!-- DISCLAIMER -->
         <div class="disclaimer">
-            <strong>⚠️ PENTING:</strong> Layanan ini hanya untuk keperluan sah dan dengan persetujuan pemilik nomor. 
-            Pelacakan memerlukan GPS aktif dan koneksi internet pada perangkat target.
+            <strong>Legal:</strong> Hanya untuk nomor sah • GPS harus aktif
         </div>
     </div>
 
-    <script>
-        // Format nomor HP otomatis
-        document.getElementById('phoneNumber').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.startsWith('0')) {
-                value = '+62' + value.substring(1);
-            } else if (!value.startsWith('+62') && value.length > 2) {
-                value = '+62' + value;
-            }
-            e.target.value = value;
-        });
-
-        // Fungsi pelacakan (simulasi)
-        function trackPhone() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const btnText = document.getElementById('btnText');
-            const loadingText = document.getElementById('loadingText');
-            const result = document.getElementById('result');
-
-            if (!phoneNumber || phoneNumber.length < 12) {
-                showResult('error', '❌ Nomor HP tidak valid. Pastikan format +62xxxxxxxxxx');
-                return;
-            }
-
-            // Tampilkan loading
-            btnText.style.display = 'none';
-            loadingText.style.display = 'inline';
-            result.style.display = 'none';
-
-            // Simulasi delay pelacakan
-            setTimeout(() => {
-                btnText.style.display = 'inline';
-                loadingText.style.display = 'none';
-
-                // Simulasi hasil sukses (ganti dengan API real jika ada)
-                showResult('success', generateTrackingResult(phoneNumber));
-            }, 3000);
-        }
-
-        function showResult(type, message) {
-            const result = document.getElementById('result');
-            result.className = `result ${type}`;
-            result.innerHTML = message;
-            result.style.display = 'block';
-        }
-
-        function generateTrackingResult(phoneNumber) {
-            const locations = [
-                { city: 'Jakarta Pusat', lat: -6.2088, lng: 106.8456, accuracy: '12m' },
-                { city: 'Bandung', lat: -6.9175, lng: 107.6191, accuracy: '25m' },
-                { city: 'Surabaya', lat: -7.2575, lng: 112.7521, accuracy: '8m' },
-                { city: 'Medan', lat: 3.5952, lng: 98.6728, accuracy: '35m' },
-                { city: 'Yogyakarta', lat: -7.7956, lng: 110.3695, accuracy: '15m' }
-            ];
-
-            const randomLoc = locations[Math.floor(Math.random() * locations.length)];
-            
-            return `
-                <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">
-                    ✅ HP ditemukan!
-                </div>
-                <div class="location-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt" style="color: #28a745;"></i>
-                        <span>${randomLoc.city}</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-ruler" style="color: #28a745;"></i>
-                        <span>${randomLoc.accuracy}</span>
-                    </div>
-                </div>
-                <div class="location-info">
-                    <div class="info-item">
-                        <i class="fas fa-signal" style="color: #28a745;"></i>
-                        <span>Telkomsel 4G</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-battery-full" style="color: #28a745;"></i>
-                        <span>87%</span>
-                    </div>
-                </div>
-                <div class="map-placeholder">
-                    <i class="fas fa-map" style="font-size: 2rem; margin-right: 10px;"></i>
-                    Peta lokasi (integrasi Google Maps)
-                </div>
-                <div style="font-size: 0.85rem; margin-top: 10px; opacity: 0.8;">
-                    Terakhir update: ${new Date().toLocaleString('id-ID')}
-                </div>
-            `;
-        }
-
-        // Enter key support
-        document.getElementById('phoneNumber').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                trackPhone();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
