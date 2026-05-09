@@ -3,84 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran QR - Rp 50.000</title>
+    <title>🎮 TopUp ML Diamond</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Halaman Awal -->
-    <div id="initialPage" class="container">
-        <div class="header">
-            <h1>🏪 Toko Online</h1>
-            <div class="price">Rp 50.000</div>
-        </div>
-        <div class="content">
-            <div class="product-info">
-                <div class="product-title">Paket Premium 1 Bulan</div>
-                <div class="product-desc">Akses penuh ke semua fitur premium</div>
+    <!-- HALAMAN AWAL -->
+    <div id="home" class="page active">
+        <div class="card">
+            <div class="header">
+                <i class="fab fa-mobile-legends"></i>
+                <h1>Mobile Legends</h1>
+                <div class="price">Rp 150.000</div>
+                <div class="package">728 ♦ Diamonds + Skin</div>
             </div>
-            <button class="pay-btn" onclick="showQR()">
-                💳 BAYAR SEKARANG
+            <div class="info">
+                <div><i class="fas fa-gem"></i> 728 Diamonds</div>
+                <div><i class="fas fa-tshirt"></i> Skin Epic</div>
+                <div><i class="fas fa-bolt"></i> Instan</div>
+            </div>
+            <button class="btn-primary" onclick="showQR()">
+                <i class="fas fa-qrcode"></i> BAYAR VIA QR
             </button>
         </div>
     </div>
 
-    <!-- Halaman QR -->
-    <div id="qrPage" class="container">
-        <div class="header">
-            <h1>📱 Scan QR Code</h1>
-            <div class="price">Rp 50.000</div>
-        </div>
-        <div class="qr-section">
-            <div class="qr-container">
-                <!-- GANTI DENGAN LINK MEDIAFIRE ANDA -->
-                <img src="qr-code.png" alt="QR Code" class="qr-image" id="qrImage">
+    <!-- HALAMAN QR -->
+    <div id="qr" class="page">
+        <div class="card">
+            <div class="header">
+                <i class="fab fa-mobile-legends"></i>
+                <h1>Scan QR Payment</h1>
+                <div class="price">Rp 150.000</div>
             </div>
-            <div class="qr-info">
-                <div class="qr-title">Scan dan bayar tepat Rp 50.000</div>
-                <div class="bank-info">
-                    💳 BCA 1234567890 (a/n Toko Online)<br>
-                    📱 Pastikan nominal tepat Rp 50.000
+            <div class="qr-container">
+                <!-- 1 QR UNTUK SEMUA BANK/E-WALLET -->
+                <img src="img/qr-universal.png" class="qr-code" alt="Universal QR">
+                <div class="download-zone">
+                    <a href="img/qr-universal.png" download="QR_ML_150K.png" class="btn-download">
+                        <i class="fas fa-download"></i> DOWNLOAD QR
+                    </a>
+                    <button class="btn-share" onclick="shareQR()">
+                        <i class="fas fa-share"></i> SHARE WA
+                    </button>
                 </div>
             </div>
-            <button class="back-btn" onclick="showInitial()">← Kembali</button>
-            <button class="check-btn" onclick="manualCheck()">✅ Sudah Bayar</button>
+            <div class="payment-info">
+                <div class="bank-item">
+                    <span class="bank-ico">🏦</span>
+                    <span>BCA 1234-5678-90<br><small>TopUp ML Diamond</small></span>
+                </div>
+                <div class="bank-item">
+                    <span class="bank-ico">💰</span>
+                    <span>DANA/OVO 0812-3456-7890<br><small>Bayar tepat 150rb</small></span>
+                </div>
+                <div class="warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    BAYAR **TEPAT** Rp150.000
+                </div>
+            </div>
+            <div class="action-row">
+                <button class="btn-success" onclick="checkPayment()">
+                    <i class="fas fa-check"></i> SUDAH BAYAR
+                </button>
+                <button class="btn-back" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> KEMBALI
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Loading -->
-    <div id="loadingPage" class="container">
-        <div class="loading">
-            <div class="spinner"></div>
-            <h2>Menunggu Konfirmasi...</h2>
-            <p>Silahkan tunggu beberapa saat</p>
+    <!-- LOADING -->
+    <div id="loading" class="page">
+        <div class="card">
+            <div class="loader">
+                <i class="fas fa-spinner fa-spin"></i>
+                <div class="loading-text">Verifikasi Pembayaran...</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Sukses -->
-    <div id="successPage" class="container">
-        <div class="status-section">
-            <div class="success-icon">✅</div>
-            <h2 class="status-title">Pembayaran Berhasil!</h2>
-            <p class="status-message">Terima kasih! Pembayaran Anda telah berhasil diverifikasi.</p>
-            <!-- GANTI DENGAN LINK WEB ANDA DI MEDIAFIRE -->
-            <a href="https://uniera.siakadcloud.com/gate/login" class="redirect-btn" target="_blank">
-                🚀 LANJUT KE WEBSITE
+    <!-- SUKSES -->
+    <div id="success" class="page">
+        <div class="card success">
+            <i class="fas fa-trophy success-icon"></i>
+            <h2>✅ TOPUP SUKSES!</h2>
+            <div class="success-info">
+                <div>728 ♦ Diamonds</div>
+                <div>Skin Epic Gratis</div>
+            </div>
+            <a href="https://game.mediafire.com" class="btn-success-large" target="_blank">
+                <i class="fas fa-gamepad"></i> MAIN GAME SEKARANG
             </a>
-            <button class="back-btn" onclick="showInitial()">← Transaksi Baru</button>
+            <button class="btn-secondary" onclick="showHome()">Beli Lagi</button>
         </div>
     </div>
 
-    <!-- Gagal -->
-    <div id="failedPage" class="container">
-        <div class="status-section">
-    
-            <div class="failed-icon">❌</div>
-            <h2 class="status-title">Pembayaran Gagal</h2>
-            <p class="status-message">Nominal pembayaran tidak sesuai atau belum terdeteksi.</p>
-            <button class="pay-btn" onclick="showQR()">
-                🔄 COBA LAGI
-            </button>
-            <button class="back-btn" onclick="showInitial()">← Kembali</button>
+    <!-- GAGAL -->
+    <div id="failed" class="page">
+        <div class="card failed">
+            <i class="fas fa-times-circle failed-icon"></i>
+            <h2>❌ GAGAL</h2>
+            <p>Nominal salah atau belum masuk</p>
+            <button class="btn-primary" onclick="showQR()">Coba Lagi</button>
         </div>
     </div>
 
