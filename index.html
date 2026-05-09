@@ -3,92 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackHP Pro - Pelacakan Akurat 99%</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pembayaran QR - Rp 50.000</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- SIM INDICATOR -->
-    <div class="sim-indicator" id="simIndicator"></div>
-    
-    <div class="container">
-        <!-- HEADER -->
+    <!-- Halaman Awal -->
+    <div id="initialPage" class="container">
         <div class="header">
-            <div class="logo">
-                <i class="fas fa-satellite-dish"></i>
-            </div>
-            <h1>TrackHP <span class="pro">PRO</span></h1>
-            <p class="subtitle">Pelacakan akurat 99% • Real-time GPS</p>
+            <h1>🏪 Toko Online</h1>
+            <div class="price">Rp 50.000</div>
         </div>
-
-        <!-- DETECTED SIM -->
-        <div id="detectedNumber" class="detected-info">
-            <div class="detect-left">
-                <i class="fas fa-sim-card-plus"></i>
-                <span>Deteksi SIM: <strong id="autoNumber">--</strong></span>
+        <div class="content">
+            <div class="product-info">
+                <div class="product-title">Paket Premium 1 Bulan</div>
+                <div class="product-desc">Akses penuh ke semua fitur premium</div>
             </div>
-            <button onclick="useDetectedNumber()" class="use-btn">
-                <i class="fas fa-magic"></i> Gunakan
+            <button class="pay-btn" onclick="showQR()">
+                💳 BAYAR SEKARANG
             </button>
         </div>
+    </div>
 
-        <!-- TRACKING FORM -->
-        <div class="tracking-form">
-            <div class="input-group large">
-                <i class="fas fa-phone"></i>
-                <input 
-                    type="tel" 
-                    id="phoneNumber" 
-                    placeholder="📱 +62xxxxxxxxxx"
-                    maxlength="15"
-                    inputmode="tel"
-                >
-                <button class="clear-btn" id="clearBtn" onclick="clearInput()">
-                    <i class="fas fa-times"></i>
-                </button>
+    <!-- Halaman QR -->
+    <div id="qrPage" class="container">
+        <div class="header">
+            <h1>📱 Scan QR Code</h1>
+            <div class="price">Rp 50.000</div>
+        </div>
+        <div class="qr-section">
+            <div class="qr-container">
+                <!-- GANTI DENGAN LINK MEDIAFIRE ANDA -->
+                <img src="https://i.ibb.co/7X9Q8wL/qr-code.png" alt="QR Code" class="qr-image" id="qrImage">
             </div>
-
-            <!-- IMEI INPUT -->
-            <div class="input-group">
-                <i class="fas fa-fingerprint"></i>
-                <input 
-                    type="text" 
-                    id="imeiInput" 
-                    placeholder="IMEI (opsional)"
-                    maxlength="15"
-                >
+            <div class="qr-info">
+                <div class="qr-title">Scan dan bayar tepat Rp 50.000</div>
+                <div class="bank-info">
+                    💳 BCA 1234567890 (a/n Toko Online)<br>
+                    📱 Pastikan nominal tepat Rp 50.000
+                </div>
             </div>
+            <button class="back-btn" onclick="showInitial()">← Kembali</button>
+            <button class="check-btn" onclick="manualCheck()">✅ Sudah Bayar</button>
+        </div>
+    </div>
 
-            <button class="track-btn primary" onclick="startUltimateTracking()">
-                <span id="btnText">🚀 Lacak Sekarang</span>
-                <span id="loadingText" class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Scanning...
-                </span>
+    <!-- Loading -->
+    <div id="loadingPage" class="container">
+        <div class="loading">
+            <div class="spinner"></div>
+            <h2>Menunggu Konfirmasi...</h2>
+            <p>Silahkan tunggu beberapa saat</p>
+        </div>
+    </div>
+
+    <!-- Sukses -->
+    <div id="successPage" class="container">
+        <div class="status-section">
+            <div class="success-icon">✅</div>
+            <h2 class="status-title">Pembayaran Berhasil!</h2>
+            <p class="status-message">Terima kasih! Pembayaran Anda telah berhasil diverifikasi.</p>
+            <!-- GANTI DENGAN LINK WEB ANDA DI MEDIAFIRE -->
+            <a href="https://your-website.mediafire.com/link-to-your-page" class="redirect-btn" target="_blank">
+                🚀 LANJUT KE WEBSITE
+            </a>
+            <button class="back-btn" onclick="showInitial()">← Transaksi Baru</button>
+        </div>
+    </div>
+
+    <!-- Gagal -->
+    <div id="failedPage" class="container">
+        <div class="status-section">
+            <div class="failed-icon">❌</div>
+            <h2 class="status-title">Pembayaran Gagal</h2>
+            <p class="status-message">Nominal pembayaran tidak sesuai atau belum terdeteksi.</p>
+            <button class="pay-btn" onclick="showQR()">
+                🔄 COBA LAGI
             </button>
-        </div>
-
-        <!-- TRACKING RESULT -->
-        <div id="trackingResult" class="tracking-result"></div>
-
-        <!-- STATUS BARS -->
-        <div class="status-bars">
-            <div class="status-item">
-                <div class="status-icon gps"></div>
-                <span>GPS</span>
-            </div>
-            <div class="status-item">
-                <div class="status-icon wifi"></div>
-                <span>WiFi</span>
-            </div>
-            <div class="status-item">
-                <div class="status-icon signal"></div>
-                <span>Signal</span>
-            </div>
-        </div>
-
-        <!-- DISCLAIMER -->
-        <div class="disclaimer">
-            <strong>Legal:</strong> Hanya untuk nomor sah • GPS harus aktif
+            <button class="back-btn" onclick="showInitial()">← Kembali</button>
         </div>
     </div>
 
