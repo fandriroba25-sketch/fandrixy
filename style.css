@@ -1,94 +1,272 @@
-/* PRO STYLES - Tambahkan setelah CSS lama */
-.header {
-    margin-bottom: 25px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.header .logo i {
-    font-size: 3.5rem;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.pro {
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.tracking-form {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
+.container {
+    background: white;
     border-radius: 20px;
-    margin-bottom: 25px;
-    backdrop-filter: blur(10px);
-}
-
-.input-group.large input {
-    padding: 20px 20px 20px 65px;
-    font-size: 1.2rem;
-}
-
-.tracking-result {
-    min-height: 300px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    overflow: hidden;
+    animation: slideUp 0.8s ease-out;
     display: none;
 }
 
-.tracking-result.active {
+.container.active {
     display: block;
-    animation: trackingPulse 2s infinite;
 }
 
-@keyframes trackingPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(75, 192, 192, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(75, 192, 192, 0.6); }
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.status-bars {
-    display: flex;
-    justify-content: space-around;
-    margin: 25px 0;
+.header {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.content {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.product-info {
+    margin-bottom: 30px;
+}
+
+.product-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-desc {
+    color: #666;
+    font-size: 14px;
+}
+
+.pay-btn, .check-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.pay-btn:hover, .check-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.qr-section {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
 }
 
-.status-item {
+.qr-container {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.qr-image {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 20px;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.qr-info {
+    text-align: center;
+}
+
+.qr-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.bank-info {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #1976d2;
+}
+
+.loading {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #4a5568;
+    justify-content: center;
+    padding: 60px 30px;
+    text-align: center;
 }
 
-.status-icon {
-    width: 40px;
-    height: 40px;
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
     border-radius: 50%;
-    margin-bottom: 8px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.status-section {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: bounce 1s ease;
+}
+
+.failed-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #f44336;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: shake 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.status-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.status-message {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.redirect-btn {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.redirect-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+}
+
+.back-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
     transition: all 0.3s ease;
 }
 
-.status-icon.gps { background: #48bb78; }
-.status-icon.wifi { background: #ed8936; }
-.status-icon.signal { background: #667eea; }
-
-.sim-indicator {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 16px;
-    height: 16px;
-    background: #48bb78;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(72, 187, 120, 0.6);
-    animation: radarPulse 2s infinite;
-    z-index: 9999;
+.back-btn:hover {
+    background: #5a6268;
 }
 
-@keyframes radarPulse {
-    0% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(72, 187, 120, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0); }
+#initialPage {
+    display: block;
 }
+
+@media (max-width: 480px) {
+    .container {
+        margin: 10px;
+    }
+    
+    .price {
+        font-size: 28px;
+    }
+    
+    .qr-image {
+        width: 220px;
+        height: 220px;
+    }
+    }
