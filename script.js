@@ -1,89 +1,58 @@
-// Inisialisasi halaman pertama
-document.addEventListener('DOMContentLoaded', function() {
-    showPage('initialPage');
-});
+// Pages
+const pages = {
+    home: 'home', qr: 'qr', loading: 'loading', 
+    success: 'success', failed: 'failed'
+};
 
-// Fungsi navigasi halaman
-function showPage(pageId) {
-    // Sembunyikan semua container
-    document.querySelectorAll('.container').forEach(container => {
-        container.classList.remove('active');
+// Show page
+function showPage(page) {
+    Object.values(pages).forEach(p => {
+        document.getElementById(p).classList.remove('active');
     });
+    document.getElementById(page).classList.add('active');
+}
+
+// Navigation
+function showQR() { showPage('qr'); }
+function showHome() { showPage('home'); }
+
+// Share QR
+function shareQR() {
+    const qrUrl = 'img/qr-universal.png';
+    const text = 'TopUp ML 728 Diamond Rp150rb';
     
-    // Tampilkan halaman yang dipilih
-    document.getElementById(pageId).classList.add('active');
+    if (navigator.share) {
+        navigator.share({ title: 'TopUp ML', text, url: qrUrl });
+    } else {
+        // Copy to clipboard
+        navigator.clipboard.writeText(`${text}\n${window.location.origin}/${qrUrl}`);
+        alert('✅ QR Link copied! Kirim ke WA');
+    }
 }
 
-// Show QR Page
-function showQR() {
-    showPage('qrPage');
-    startPaymentCheck();
-}
-
-// Show Initial Page
-function showInitial() {
-    clearInterval(checkInterval);
-    showPage('initialPage');
-}
-
-// Auto check payment
-let checkInterval;
-function startPaymentCheck() {
-    checkInterval = setTimeout(checkPayment, 10000); // 10 detik auto check
-}
-
-// Manual check payment
-function manualCheck() {
-    clearInterval(checkInterval);
-    checkPayment();
-}
-
-// Simulasi pengecekan pembayaran
-function checkPayment() {
-    showPage('loadingPage');
+// Check Payment (SIMULASI - ganti dengan API real)
+async function checkPayment() {
+    showPage('loading');
     
-    // Simulasi delay (ganti dengan API real)
+    // Simulasi delay + random result
     setTimeout(() => {
-        const isSuccess = Math.random() > 0.3; // 70% sukses untuk demo
+        const success = Math.random() > 0.4; // 60% success
         
-        if (isSuccess) {
-            showPage('successPage');
-            // Auto redirect setelah 3 detik
+        if (success) {
+            showPage('success');
+            // Auto redirect 4 detik
             setTimeout(() => {
-                const redirectUrl = document.querySelector('.redirect-btn').href;
-                window.open(redirectUrl, '_blank');
-            }, 3000);
+                window.open('https://game.mediafire.com', '_blank');
+            }, 4000);
         } else {
-            showPage('failedPage');
+            showPage('failed');
         }
-    }, 4000);
+    }, 3500);
 }
 
-// Fungsi untuk integrasi API real (contoh)
-async function checkRealPayment(orderId) {
-    try {
-        const response = await fetch(`/api/check-payment/${orderId}`);
-        const result = await response.json();
-        
-        if (result.status === 'success') {
-            showPage('successPage');
-        } else {
-            showPage('failedPage');
-        }
-    } catch (error) {
-        console.error('Payment check failed:', error);
-        showPage('failedPage');
+// Auto check setelah 12 detik di QR page
+setTimeout(() => {
+    if (document.getElementById('qr').classList.contains('active')) {
+        checkPayment();
     }
-}
-
-// Generate order ID unik
-function generateOrderId() {
-    return 'ORD_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9).toUpperCase();
-}
-
-// Event listener untuk tombol Enter di QR page
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && document.getElementById('qrPage').classList.contains('active')) {
-        manualCheck();
-    }
-});
+}, 12000);
